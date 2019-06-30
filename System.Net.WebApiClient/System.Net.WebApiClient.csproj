@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageId>System.Net.WebApiClient</PackageId>
+    <PackageId>WebApiClientWrapper</PackageId>
     <Authors>Balázs Ádám</Authors>
-    <Product>System.Net.WebApiClient</Product>
+    <Product>WebApiClientWrapper</Product>
     <Description>HttpClient wrapper</Description>
     <Copyright>Balázs Ádám</Copyright>
     <Company>Balázs Ádám</Company>
