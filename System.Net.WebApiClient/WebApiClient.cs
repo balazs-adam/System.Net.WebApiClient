@@ -34,15 +34,6 @@ namespace System.Net.WebApiClient
             if (configuration.RequestFactory == null)
                 throw new ArgumentNullException("RequestFactory must not be null!");
 
-            if (configuration.RequestConfiguration == null)
-                throw new ArgumentNullException("RequestConfiguration must not be null!");
-
-            if (configuration.RequestConfiguration.BaseUri != default)
-            {
-                if (!configuration.RequestConfiguration.BaseUri.IsAbsoluteUri)
-                    throw new ArgumentException("The BaseUri must be absolute!");
-            }
-
             if (configuration.ResponseFactory == null)
                 throw new ArgumentNullException("ResponseFactory must not be null!");
 
@@ -66,8 +57,7 @@ namespace System.Net.WebApiClient
         protected virtual async Task<HttpResponse> SendRequestCoreAsync(HttpRequestBase request, CancellationToken cancellationToken = default)
         {
             using (var client = await CreateUnderlyingHttpClientAsync())
-            using (var httpRequest = await _configuration.RequestFactory
-                .CreateHttpRequestMessageAsync(_configuration.RequestConfiguration, _configuration.Serializer, request))
+            using (var httpRequest = await _configuration.RequestFactory.CreateHttpRequestMessageAsync(_configuration.Serializer, request))
             {
                 using (var response = await SendRequestMessageAsync(httpRequest, cancellationToken))
                 {
@@ -81,7 +71,7 @@ namespace System.Net.WebApiClient
         {
             using (var client = await CreateUnderlyingHttpClientAsync())
             using (var httpRequest = await _configuration.RequestFactory
-                .CreateHttpRequestMessageAsync(_configuration.RequestConfiguration, _configuration.Serializer, request))
+                .CreateHttpRequestMessageAsync(_configuration.Serializer, request))
             {
                 using (var response = await SendRequestMessageAsync(httpRequest, cancellationToken))
                 {

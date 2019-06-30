@@ -13,7 +13,6 @@ namespace System.Net.WebApiClient
     {
         public IHttpContentSerializer Serializer { get; set; }
         public IWebApiClientErrorHandler ErrorHandler { get; set; }
-        public RequestConfiguration RequestConfiguration { get; set; }
         public IHttpRequestFactory RequestFactory { get; set; }
         public IHttpResponseFactory ResponseFactory { get; set; }
 
@@ -25,7 +24,6 @@ namespace System.Net.WebApiClient
                 {
                     Serializer = new JsonHttpContentSerializer(),
                     ErrorHandler = new WebApiClientErrorHandler(),
-                    RequestConfiguration = new RequestConfiguration(),
                     RequestFactory = new HttpRequestFactory(),
                     ResponseFactory = new HttpResponseFactory()
                 };

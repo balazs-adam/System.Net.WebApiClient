@@ -16,16 +16,31 @@ namespace System.Net.WebApiClient.Request
         protected const string GzipEncoding = "gzip";
         protected const string DeflateEncoding = "deflate";
 
-        public virtual async Task<HttpRequestMessage> CreateHttpRequestMessageAsync(RequestConfiguration configuration, IHttpContentSerializer serializer, HttpRequestBase request, CancellationToken cancellationToken = default)
+        private bool _useGzip;
+        private Uri _baseUri;
+
+        public HttpRequestFactory(bool useGzip = false, Uri baseUri = default)
         {
-            var requestMessage = new HttpRequestMessage(request.Method, await CreateRequestUriAsync(configuration.BaseUri, request.RequestUri, request.QueryParameters));
+            if (baseUri != default)
+            {
+                if (!baseUri.IsAbsoluteUri)
+                    throw new ArgumentException("The BaseUri must be absolute!");
+            }
+
+            _useGzip = useGzip;
+            _baseUri = baseUri;
+        }
+
+        public virtual async Task<HttpRequestMessage> CreateHttpRequestMessageAsync(IHttpContentSerializer serializer, HttpRequestBase request, CancellationToken cancellationToken = default)
+        {
+            var requestMessage = new HttpRequestMessage(request.Method, await CreateRequestUriAsync(_baseUri, request.RequestUri, request.QueryParameters));
 
             if (request is HttpRequestWithContent requestWithContent && requestWithContent.Content != null)
             {
                 requestMessage.Content = await serializer.SerializeRequestContentAsync(requestWithContent.Content, cancellationToken);
             }
 
-            if (configuration.UseGzip)
+            if (_useGzip)
             {
                 requestMessage.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue(GzipEncoding));
                 requestMessage.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue(DeflateEncoding));

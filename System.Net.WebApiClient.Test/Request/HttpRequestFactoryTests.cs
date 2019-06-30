@@ -12,8 +12,6 @@ namespace System.Net.WebApiClient.Test.Request
 {
     public class HttpRequestFactoryTests : HttpRequestFactoryTestBase
     {
-        protected RequestConfiguration RequestConfiguration =>
-            WebApiClientConfiguration.Default.RequestConfiguration;
         protected IHttpContentSerializer HttpContentSerializer =>
             WebApiClientConfiguration.Default.Serializer;
 
@@ -29,7 +27,7 @@ namespace System.Net.WebApiClient.Test.Request
             };
 
             var requestMessage = await factory
-                .CreateHttpRequestMessageAsync(RequestConfiguration, HttpContentSerializer, request);
+                .CreateHttpRequestMessageAsync(HttpContentSerializer, request);
 
             Assert.NotNull(requestMessage);
             Assert.Equal(request.Method, requestMessage.Method);
@@ -59,7 +57,7 @@ namespace System.Net.WebApiClient.Test.Request
             };
 
             var requestMessage = await factory
-                .CreateHttpRequestMessageAsync(RequestConfiguration, HttpContentSerializer, request);
+                .CreateHttpRequestMessageAsync(HttpContentSerializer, request);
 
             Assert.NotNull(requestMessage);
             Assert.Equal(request.Method, requestMessage.Method);
@@ -75,18 +73,15 @@ namespace System.Net.WebApiClient.Test.Request
         [Fact]
         public async Task CreateHttpRequestMessageAsync_Gzip()
         {
-            var factory = CreateHttpRequestFactory();
-
             var request = new HttpRequest(Http.HttpMethod.Get)
             {
                 RequestUri = new Uri("https://index.hu/api/test")
             };
 
-            var requestConfiguration = RequestConfiguration;
-            requestConfiguration.UseGzip = true;
+            var factory = new HttpRequestFactory(true);
 
             var requestMessage = await factory
-                .CreateHttpRequestMessageAsync(requestConfiguration, HttpContentSerializer, request);
+                .CreateHttpRequestMessageAsync(HttpContentSerializer, request);
 
             Assert.NotNull(requestMessage);
             Assert.Equal(request.Method, requestMessage.Method);
@@ -123,7 +118,7 @@ namespace System.Net.WebApiClient.Test.Request
             };
 
             var requestMessage = await factory
-                .CreateHttpRequestMessageAsync(RequestConfiguration, HttpContentSerializer, request);
+                .CreateHttpRequestMessageAsync(HttpContentSerializer, request);
 
             Assert.NotNull(requestMessage);
             Assert.Equal(request.Method, requestMessage.Method);

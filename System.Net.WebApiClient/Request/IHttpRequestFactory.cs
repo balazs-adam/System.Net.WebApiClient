@@ -10,7 +10,7 @@ namespace System.Net.WebApiClient.Request
 {
     public interface IHttpRequestFactory
     {
-        Task<HttpRequestMessage> CreateHttpRequestMessageAsync(RequestConfiguration configuration, IHttpContentSerializer serializer, HttpRequestBase request, CancellationToken cancellationToken = default);
+        Task<HttpRequestMessage> CreateHttpRequestMessageAsync(IHttpContentSerializer serializer, HttpRequestBase request, CancellationToken cancellationToken = default);
         Task<Uri> CreateRequestUriAsync(Uri baseUri, Uri requestUri, object queryParameters = null);
     }
 }

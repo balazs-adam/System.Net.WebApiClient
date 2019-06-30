@@ -9,7 +9,6 @@
     <Copyright>Balázs Ádám</Copyright>
     <Company>Balázs Ádám</Company>
     <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <AssemblyName>System.Net.WebApiClient</AssemblyName>
     <Version>0.0.1-preview</Version>
   </PropertyGroup>

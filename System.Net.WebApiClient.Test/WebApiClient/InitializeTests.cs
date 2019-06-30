@@ -9,17 +9,6 @@ namespace System.Net.WebApiClient.Test.WebApiClient
     public class InitializeTests : WebApiClientTestBase
     {
         [Fact]
-        public async Task InitializeAsync_RelativeBaseUri()
-        {
-            var client = CreateWebApiClient();
-
-            var defaultConfig = WebApiClientConfiguration.Default;
-            defaultConfig.RequestConfiguration.BaseUri = new Uri("api/test", UriKind.Relative);
-
-            await Assert.ThrowsAsync<ArgumentException>(async () => await client.InitializeAsync(defaultConfig));
-        }
-
-        [Fact]
         public async Task InitializeAsync_NullSerializer()
         {
             var client = CreateWebApiClient();
@@ -48,17 +37,6 @@ namespace System.Net.WebApiClient.Test.WebApiClient
 
             var defaultConfig = WebApiClientConfiguration.Default;
             defaultConfig.RequestFactory = null;
-
-            await Assert.ThrowsAsync<ArgumentNullException>(async () => await client.InitializeAsync(defaultConfig));
-        }
-
-        [Fact]
-        public async Task InitializeAsync_NullRequestConfiguration()
-        {
-            var client = CreateWebApiClient();
-
-            var defaultConfig = WebApiClientConfiguration.Default;
-            defaultConfig.RequestConfiguration = null;
 
             await Assert.ThrowsAsync<ArgumentNullException>(async () => await client.InitializeAsync(defaultConfig));
         }
