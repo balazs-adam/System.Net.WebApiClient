@@ -10,7 +10,7 @@
     <Company>Balázs Ádám</Company>
     <IncludeSymbols>true</IncludeSymbols>
     <AssemblyName>System.Net.WebApiClient</AssemblyName>
-    <Version>0.0.1-preview</Version>
+    <Version>0.0.2-preview</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
