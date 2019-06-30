@@ -19,7 +19,7 @@ namespace System.Net.WebApiClient.Request
         private bool _useGzip;
         private Uri _baseUri;
 
-        public HttpRequestFactory(bool useGzip = false, Uri baseUri = default)
+        public HttpRequestFactory(bool useGzip = true, Uri baseUri = default)
         {
             if (baseUri != default)
             {

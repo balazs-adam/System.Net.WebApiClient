@@ -34,8 +34,9 @@ namespace System.Net.WebApiClient.Test.Request
             Assert.Equal(new Uri("https://index.hu/api/test?Param1=1&Param2=teszt"), requestMessage.RequestUri);
 
             Assert.Single(requestMessage.Headers.Accept);
-            Assert.Single(requestMessage.Headers.AcceptCharset);
-            Assert.Empty(requestMessage.Headers.AcceptEncoding);
+
+            Assert.Contains("gzip", requestMessage.Headers.AcceptEncoding.Select(h => h.Value).ToList());
+            Assert.Contains("deflate", requestMessage.Headers.AcceptEncoding.Select(h => h.Value).ToList());
 
             Assert.Null(requestMessage.Content);
         }
@@ -64,21 +65,22 @@ namespace System.Net.WebApiClient.Test.Request
             Assert.Equal(new Uri("https://index.hu/api/test"), requestMessage.RequestUri);
 
             Assert.Single(requestMessage.Headers.Accept);
-            Assert.Single(requestMessage.Headers.AcceptCharset);
-            Assert.Empty(requestMessage.Headers.AcceptEncoding);
+
+            Assert.Contains("gzip", requestMessage.Headers.AcceptEncoding.Select(h => h.Value).ToList());
+            Assert.Contains("deflate", requestMessage.Headers.AcceptEncoding.Select(h => h.Value).ToList());
 
             Assert.NotNull(requestMessage.Content);
         }
 
         [Fact]
-        public async Task CreateHttpRequestMessageAsync_Gzip()
+        public async Task CreateHttpRequestMessageAsync_NoGzip()
         {
             var request = new HttpRequest(Http.HttpMethod.Get)
             {
                 RequestUri = new Uri("https://index.hu/api/test")
             };
 
-            var factory = new HttpRequestFactory(true);
+            var factory = new HttpRequestFactory(false);
 
             var requestMessage = await factory
                 .CreateHttpRequestMessageAsync(HttpContentSerializer, request);
@@ -90,8 +92,8 @@ namespace System.Net.WebApiClient.Test.Request
             Assert.Single(requestMessage.Headers.Accept);
             Assert.Single(requestMessage.Headers.AcceptCharset);
 
-            Assert.Contains("gzip", requestMessage.Headers.AcceptEncoding.Select(h => h.Value).ToList());
-            Assert.Contains("deflate", requestMessage.Headers.AcceptEncoding.Select(h => h.Value).ToList());
+            Assert.DoesNotContain("gzip", requestMessage.Headers.AcceptEncoding.Select(h => h.Value).ToList());
+            Assert.DoesNotContain("deflate", requestMessage.Headers.AcceptEncoding.Select(h => h.Value).ToList());
 
             Assert.Null(requestMessage.Content);
         }
@@ -126,6 +128,9 @@ namespace System.Net.WebApiClient.Test.Request
 
             Assert.Single(requestMessage.Headers.Accept);
             Assert.Single(requestMessage.Headers.AcceptCharset);
+
+            Assert.Contains("gzip", requestMessage.Headers.AcceptEncoding.Select(h => h.Value).ToList());
+            Assert.Contains("deflate", requestMessage.Headers.AcceptEncoding.Select(h => h.Value).ToList());
 
             Assert.Contains(apiKeyHeaderKey, requestMessage.Headers.Select(h => h.Key).ToList());
             Assert.Contains(countHeaderKey, requestMessage.Headers.Select(h => h.Key).ToList());
