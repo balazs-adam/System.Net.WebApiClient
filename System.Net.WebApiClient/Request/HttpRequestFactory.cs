@@ -27,8 +27,15 @@ namespace System.Net.WebApiClient.Request
         /// </summary>
         protected const string DeflateEncoding = "deflate";
 
-        private readonly bool _useGzip;
-        private readonly Uri _baseUri;
+        /// <summary>
+        /// Specifies if the http communication must be gzipped.
+        /// </summary>
+        public bool UseGzip { get; }
+
+        /// <summary>
+        /// Specifies a base url for all requests.
+        /// </summary>
+        public Uri BaseUri { get; }
 
         /// <summary>
         /// Deafault constructor of the HttpRequestFactory.
@@ -43,8 +50,8 @@ namespace System.Net.WebApiClient.Request
                     throw new ArgumentException("The BaseUri must be absolute!");
             }
 
-            _useGzip = useGzip;
-            _baseUri = baseUri;
+            UseGzip = useGzip;
+            BaseUri = baseUri;
         }
 
         /// <summary>
@@ -56,14 +63,14 @@ namespace System.Net.WebApiClient.Request
         /// <returns>The HttpRequest instance to be sent.</returns>
         public virtual async Task<HttpRequestMessage> CreateHttpRequestMessageAsync(IHttpContentSerializer serializer, HttpRequestBase request, CancellationToken cancellationToken = default)
         {
-            var requestMessage = new HttpRequestMessage(request.Method, await CreateRequestUriAsync(_baseUri, request.RequestUri, request.QueryParameters));
+            var requestMessage = new HttpRequestMessage(request.Method, await CreateRequestUriAsync(BaseUri, request.RequestUri, request.QueryParameters));
 
             if (request is HttpRequestWithContent requestWithContent && requestWithContent.Content != null)
             {
                 requestMessage.Content = await serializer.SerializeRequestContentAsync(requestWithContent.Content, cancellationToken);
             }
 
-            if (_useGzip)
+            if (UseGzip)
             {
                 requestMessage.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue(GzipEncoding));
                 requestMessage.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue(DeflateEncoding));

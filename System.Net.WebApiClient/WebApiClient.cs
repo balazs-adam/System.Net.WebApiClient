@@ -60,6 +60,12 @@ namespace System.Net.WebApiClient
         /// <returns>The HttpClient instance.</returns>
         protected virtual Task<HttpClient> CreateUnderlyingHttpClientAsync()
         {
+            if (_configuration.RequestFactory.UseGzip)
+                return Task.FromResult(new HttpClient(new HttpClientHandler
+                {
+                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+                }));
+
             return Task.FromResult(new HttpClient());
         }
 

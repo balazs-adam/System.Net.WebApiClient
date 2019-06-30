@@ -14,6 +14,16 @@ namespace System.Net.WebApiClient.Request
     public interface IHttpRequestFactory
     {
         /// <summary>
+        /// Specifies if the http communication must be gzipped.
+        /// </summary>
+        bool UseGzip { get; }
+
+        /// <summary>
+        /// Specifies a base url for all requests.
+        /// </summary>
+        Uri BaseUri { get; }
+
+        /// <summary>
         /// Creates a new HttpRequestMessage instance for the outgoint request.
         /// </summary>
         /// <param name="serializer">The seralizer to be used for the requests content.</param>

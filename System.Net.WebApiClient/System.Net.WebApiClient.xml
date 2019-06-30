@@ -1,0 +1,701 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Net.WebApiClient</name>
+    </assembly>
+    <members>
+        <member name="T:System.Net.WebApiClient.ErrorHandling.IWebApiClientErrorHandler">
+            <summary>
+            Provides a mechanism to handle HTTP responses with a non-success status code. 
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.ErrorHandling.IWebApiClientErrorHandler.HandleErrorsAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+            <summary>
+            Handles the unsuccessfull HTTP response for every request. 
+            </summary>
+            <param name="responseMessage">The HTTP response with a non-success status code.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns></returns>
+        </member>
+        <member name="T:System.Net.WebApiClient.ErrorHandling.WebApiClientErrorHandler">
+            <summary>
+            Default implemetation of the IHttpClientErrorHandler.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.ErrorHandling.WebApiClientErrorHandler.HandleErrorsAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+            <summary>
+            Handles the unsuccessfull HTTP response for every request.
+            </summary>
+            <param name="responseMessage">The HTTP response with a non-success status code.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns></returns>
+        </member>
+        <member name="T:System.Net.WebApiClient.IWebApClient">
+            <summary>
+            Defines a type safe client for all HTTP related communications.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.InitializeAsync(System.Net.WebApiClient.WebApiClientConfiguration)">
+            <summary>
+            Initializes the current implementation.
+            </summary>
+            <param name="configuration">The current configuration to use.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.SendRequestMessageAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Sends a raw HttpRequestMessage and returns the raw HttpResponseMessage recieved for it. 
+            </summary>
+            <param name="httpRequestMessage">The request message to be sent.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The recieved HttpResponseMessage.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.SendRequestAsync``1(System.Net.WebApiClient.Request.HttpRequest,System.Threading.CancellationToken)">
+            <summary>
+            Send a HTTP request based on the HttpRequest and returns a parsed HttpResponse recieved for it. 
+            </summary>
+            <typeparam name="T">The type of the Http response's content.</typeparam>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.SendRequestAsync(System.Net.WebApiClient.Request.HttpRequest,System.Threading.CancellationToken)">
+            <summary>
+            Send a void HTTP request based on the HttpRequest and returns the non parsed HttpResponse recieved for it. 
+            </summary>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The non-parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.SendGetRequestAsync``1(System.Net.WebApiClient.Request.HttpGetRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP GET message and returns a parsed HttpResponse recieved for it.
+            </summary>
+            <typeparam name="T">The type of the Http response's content.</typeparam>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.SendGetRequestAsync(System.Net.WebApiClient.Request.HttpGetRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP GET message and returns the non parsed HttpResponse recieved for it. 
+            </summary>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The non-parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.SendPostRequestAsync``1(System.Net.WebApiClient.Request.HttpPostRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP POST message and returns a parsed HttpResponse recieved for it.
+            </summary>
+            <typeparam name="T">The type of the HTTP response's content.</typeparam>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.SendPostRequestAsync(System.Net.WebApiClient.Request.HttpPostRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP POST message and returns the non parsed HttpResponse recieved for it. 
+            </summary>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The non-parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.SendPutRequestAsync``1(System.Net.WebApiClient.Request.HttpPutRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP PUT message and returns a parsed HttpResponse recieved for it.
+            </summary>
+            <typeparam name="T">The type of the HTTP response's content.</typeparam>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.SendPutRequestAsync(System.Net.WebApiClient.Request.HttpPutRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP PUT message and returns the non parsed HttpResponse recieved for it. 
+            </summary>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The non-parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.SendDeleteRequestAsync``1(System.Net.WebApiClient.Request.HttpDeleteRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP DELETE message and returns a parsed HttpResponse recieved for it.
+            </summary>
+            <typeparam name="T">The type of the HTTP response's content.</typeparam>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.IWebApClient.SendDeleteRequestAsync(System.Net.WebApiClient.Request.HttpDeleteRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP DELETE message and returns the non parsed HttpResponse recieved for it. 
+            </summary>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The non-parsed HttpResponse.</returns>
+        </member>
+        <member name="T:System.Net.WebApiClient.Request.HttpDeleteRequest">
+            <summary>
+            Defines a DELETE HTTP request.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.HttpDeleteRequest.#ctor">
+            <summary>
+            Default constructor of the HttpDeleteRequest.
+            </summary>
+        </member>
+        <member name="T:System.Net.WebApiClient.Request.HttpGetRequest">
+            <summary>
+            Defines a GET HTTP request.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.HttpGetRequest.#ctor">
+            <summary>
+            Default constructor of the HttpGetRequest.
+            </summary>
+        </member>
+        <member name="T:System.Net.WebApiClient.Request.HttpHeaderValue">
+            <summary>
+            Defines an abstract base class for a HTTP header value.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.HttpHeaderValue.StringValue">
+            <summary>
+            Return the header's value as a string.
+            </summary>
+        </member>
+        <member name="T:System.Net.WebApiClient.Request.HttpHeaderValue`1">
+            <summary>
+            Defines a class a HTTP header value. 
+            </summary>
+            <typeparam name="T">The type of the header value.</typeparam>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.HttpHeaderValue`1.Value">
+            <summary>
+            The value of the header. 
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.HttpHeaderValue`1.StringValue">
+            <summary>
+            Returns the string representation of the header value. 
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.HttpHeaderValue`1.#ctor(`0)">
+            <summary>
+            Default constructor of the HttpHeaderValue class.
+            </summary>
+            <param name="value">The typed value of the header.</param>
+        </member>
+        <member name="T:System.Net.WebApiClient.Request.HttpPostRequest">
+            <summary>
+            Defines a POST HTTP request.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.HttpPostRequest.#ctor">
+            <summary>
+            Default constructor of the HttpPostRequest.
+            </summary>
+        </member>
+        <member name="T:System.Net.WebApiClient.Request.HttpPutRequest">
+            <summary>
+            Defines a PUT HTTP request.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.HttpPutRequest.#ctor">
+            <summary>
+            Default constructor of the HttpPutRequest.
+            </summary>
+        </member>
+        <member name="T:System.Net.WebApiClient.Request.HttpRequest">
+            <summary>
+            Defines a Http request.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.HttpRequest.#ctor(System.Net.Http.HttpMethod)">
+            <summary>
+            Default constructor of the HttpRequest class.
+            </summary>
+            <param name="method">The method of the http request message.</param>
+        </member>
+        <member name="T:System.Net.WebApiClient.Request.HttpRequestBase">
+            <summary>
+            Defines a base class for every HTTP requests.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.HttpRequestBase.RequestUri">
+            <summary>
+            The absoute or relative (to the BaseUrl defined in the HttpClientConfiguration) url of the request.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.HttpRequestBase.QueryParameters">
+            <summary>
+            Optional query parameters for the request.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.HttpRequestBase.Headers">
+            <summary>
+            The HTTP headers to attach to the request.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.HttpRequestBase.Method">
+            <summary>
+            The HTTP method of the request.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.HttpRequestBase.#ctor(System.Net.Http.HttpMethod)">
+            <summary>
+            Default constructor of the HttpRequestBase.
+            </summary>
+            <param name="method">The method of the Http request.</param>
+        </member>
+        <member name="T:System.Net.WebApiClient.Request.HttpRequestFactory">
+            <summary>
+            Default imlemenetation of the IHttpRequestFactory.
+            Creates a HttpRequestMessage by the current configuration to be sent.
+            </summary>
+        </member>
+        <member name="F:System.Net.WebApiClient.Request.HttpRequestFactory.GzipEncoding">
+            <summary>
+            The GzipEncoding header value.
+            </summary>
+        </member>
+        <member name="F:System.Net.WebApiClient.Request.HttpRequestFactory.DeflateEncoding">
+            <summary>
+            The Deflate header value.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.HttpRequestFactory.UseGzip">
+            <summary>
+            Specifies if the http communication must be gzipped.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.HttpRequestFactory.BaseUri">
+            <summary>
+            Specifies a base url for all requests.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.HttpRequestFactory.#ctor(System.Boolean,System.Uri)">
+            <summary>
+            Deafault constructor of the HttpRequestFactory.
+            </summary>
+            <param name="useGzip">Specifies if the http communication must be gzipped.</param>
+            <param name="baseUri">Specifies a base url for all requests.</param>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.HttpRequestFactory.CreateHttpRequestMessageAsync(System.Net.WebApiClient.Serialization.IHttpContentSerializer,System.Net.WebApiClient.Request.HttpRequestBase,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new HttpRequestMessage instance for the outgoint request.
+            </summary>
+            <param name="serializer">The seralizer to be used for the requests content.</param>
+            <param name="request">The requests parameteres.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The HttpRequest instance to be sent.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.HttpRequestFactory.CreateRequestUriAsync(System.Uri,System.Uri,System.Object)">
+            <summary>
+            Creates an aboulute Uri for the outgoing request, including an optional baseUri and a query string.
+            </summary>
+            <param name="baseUri">The optional baseUri.</param>
+            <param name="requestUri">The absolute or relative uri of the request.</param>
+            <param name="queryParameters">The optional query parameters.</param>
+            <returns>The Uri for the HttpRequestMessage.</returns>
+        </member>
+        <member name="T:System.Net.WebApiClient.Request.HttpRequestWithContent">
+            <summary>
+            Defines a base class for a HTTP request with a body. 
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.HttpRequestWithContent.Content">
+            <summary>
+            The object that must be serialized into the body of the HTTP request.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.HttpRequestWithContent.#ctor(System.Net.Http.HttpMethod)">
+            <summary>
+            Default constructor of the HttpRequestWithContent. 
+            </summary>
+            <param name="method">The method of the Http request.</param>
+        </member>
+        <member name="T:System.Net.WebApiClient.Request.IHttpRequestFactory">
+            <summary>
+            Creates a HttpRequestMessage by the current configuration to be sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.IHttpRequestFactory.UseGzip">
+            <summary>
+            Specifies if the http communication must be gzipped.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Request.IHttpRequestFactory.BaseUri">
+            <summary>
+            Specifies a base url for all requests.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.IHttpRequestFactory.CreateHttpRequestMessageAsync(System.Net.WebApiClient.Serialization.IHttpContentSerializer,System.Net.WebApiClient.Request.HttpRequestBase,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new HttpRequestMessage instance for the outgoint request.
+            </summary>
+            <param name="serializer">The seralizer to be used for the requests content.</param>
+            <param name="request">The requests parameteres.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The HttpRequest instance to be sent.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.Request.IHttpRequestFactory.CreateRequestUriAsync(System.Uri,System.Uri,System.Object)">
+            <summary>
+            Creates an aboulute Uri for the outgoing request, including an optional baseUri and a query string.
+            </summary>
+            <param name="baseUri">The optional baseUri.</param>
+            <param name="requestUri">The absolute or relative uri of the request.</param>
+            <param name="queryParameters">The optional query parameters.</param>
+            <returns>The Uri for the HttpRequestMessage.</returns>
+        </member>
+        <member name="T:System.Net.WebApiClient.Response.HttpResponse">
+            <summary>
+            Defines a base class for a HTTP response message with no content. 
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.Response.HttpResponse.StatusCode">
+            <summary>
+            The HTTP status code of the response.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Response.HttpResponse.#ctor(System.Net.HttpStatusCode)">
+            <summary>
+            Default constructor of the HttpResponse class.
+            </summary>
+            <param name="statusCode">The status code of the response.</param>
+        </member>
+        <member name="T:System.Net.WebApiClient.Response.HttpResponse`1">
+            <summary>
+            Defines a class for a HTTP response message with content.
+            </summary>
+            <typeparam name="T">A type of the HTTP response's content.</typeparam>
+        </member>
+        <member name="P:System.Net.WebApiClient.Response.HttpResponse`1.Content">
+            <summary>
+            The parsed content of the HTTP response.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Response.HttpResponse`1.#ctor(System.Net.HttpStatusCode,`0)">
+            <summary>
+            Default constructor of the HttpResponse class.
+            </summary>
+            <param name="statusCode">The status code of the response.</param>
+            <param name="content">The optional content of the response.</param>
+        </member>
+        <member name="T:System.Net.WebApiClient.Response.HttpResponseFactory">
+            <summary>
+            Default implementation of the IHttpResponseFactory.
+            Creates and parses the HttpResponse object for the recieved HttpResponseMessage.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Response.HttpResponseFactory.CreateResponseAsync(System.Net.WebApiClient.Serialization.IHttpContentSerializer,System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+            <summary>
+            Creates a HttpResponse object from the incoming HttpResponseMessage without parsing it's content.
+            </summary>
+            <param name="serializer">The IHttpContentSerializer to be used.</param>
+            <param name="responseMessage">The recieved HttpResponseMessage to be parsed.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The HttpResponse instance.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.Response.HttpResponseFactory.CreateResponseAsync``1(System.Net.WebApiClient.Serialization.IHttpContentSerializer,System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+            <summary>
+            Creates a HttpResponse object from the incoming HttpResponseMessage and parses it's content for the specified type.
+            </summary>
+            <typeparam name="T">The type of the parsed content.</typeparam>
+            <param name="serializer">The IHttpContentSerializer to be used.</param>
+            <param name="responseMessage">The recieved HttpResponseMessage to be parsed.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The HttpResponse instance.</returns>
+        </member>
+        <member name="T:System.Net.WebApiClient.Response.IHttpResponseFactory">
+            <summary>
+            Creates and parses the HttpResponse object for the recieved HttpResponseMessage.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Response.IHttpResponseFactory.CreateResponseAsync(System.Net.WebApiClient.Serialization.IHttpContentSerializer,System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+            <summary>
+            Creates a HttpResponse object from the incoming HttpResponseMessage without parsing it's content.
+            </summary>
+            <param name="serializer">The IHttpContentSerializer to be used.</param>
+            <param name="responseMessage">The recieved HttpResponseMessage to be parsed.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The HttpResponse instance.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.Response.IHttpResponseFactory.CreateResponseAsync``1(System.Net.WebApiClient.Serialization.IHttpContentSerializer,System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+            <summary>
+            Creates a HttpResponse object from the incoming HttpResponseMessage and parses it's content for the specified type.
+            </summary>
+            <typeparam name="T">The type of the parsed content.</typeparam>
+            <param name="serializer">The IHttpContentSerializer to be used.</param>
+            <param name="responseMessage">The recieved HttpResponseMessage to be parsed.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The HttpResponse instance.</returns>
+        </member>
+        <member name="T:System.Net.WebApiClient.Serialization.IHttpContentSerializer">
+            <summary>
+            Provides a method to serialize the content of the HTTP requests and deserialize the content of the HTTP responses. 
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Serialization.IHttpContentSerializer.CreateAcceptHeaderValuesAsync">
+            <summary>
+            Lists the values that must be placed in the Accept request header.
+            </summary>
+            <returns>The header values.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.Serialization.IHttpContentSerializer.CreateAcceptCharsetHeaderValuesAsync">
+            <summary>
+            Lists the values that must be placed in the AcceptCharset request header. 
+            </summary>
+            <returns>The header values.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.Serialization.IHttpContentSerializer.SerializeRequestContentAsync(System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Creates the HttpContent for the request. 
+            </summary>
+            <param name="requestContent">The optional content of the request to be serialized.</param>
+            <param name="cancellationToken">A cancellationToken to cancel this operation.</param>
+            <returns>The HttpContent of the request.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.Serialization.IHttpContentSerializer.DeserializeResponseContentAsync``1(System.Net.Http.HttpContent,System.Threading.CancellationToken)">
+            <summary>
+            Parses the content of the HTTP response into the passed type.
+            </summary>
+            <typeparam name="T">The type of the response's content.</typeparam>
+            <param name="responseContent">The HttpContent of the response.</param>
+            <param name="cancellationToken">A cancellationToken to cancel this operation.</param>
+            <returns>The parsed content of the response.</returns>
+        </member>
+        <member name="T:System.Net.WebApiClient.Serialization.JsonHttpContentSerializer">
+            <summary>
+            Provides a method to serialize the JSON content of the HTTP requests and deserialize the JSON content of the HTTP responses. 
+            </summary>
+        </member>
+        <member name="F:System.Net.WebApiClient.Serialization.JsonHttpContentSerializer.ContentTypeHeader">
+            <summary>
+            The ContentType header value to be placed in the requests.
+            </summary>
+        </member>
+        <member name="F:System.Net.WebApiClient.Serialization.JsonHttpContentSerializer.AcceptHeaderValue">
+            <summary>
+            The AcceptHeader header value to be placed in the requests.
+            </summary>
+        </member>
+        <member name="F:System.Net.WebApiClient.Serialization.JsonHttpContentSerializer.AcceptCharsetHeaderValue">
+            <summary>
+            The AcceptCharsetHeader header value to be placed in the requests.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.Serialization.JsonHttpContentSerializer.#ctor(Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Default constructor of the JsonHttpContentSerializer.
+            </summary>
+            <param name="jsonSerializer">The json.Net JsonSerializer to be used for the instance.</param>
+        </member>
+        <member name="M:System.Net.WebApiClient.Serialization.JsonHttpContentSerializer.CreateAcceptHeaderValuesAsync">
+            <summary>
+            Lists the values that must be placed in the Accept request header.
+            </summary>
+            <returns>The header values.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.Serialization.JsonHttpContentSerializer.CreateAcceptCharsetHeaderValuesAsync">
+            <summary>
+            Lists the values that must be placed in the AcceptCharset request header. 
+            </summary>
+            <returns>The header values.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.Serialization.JsonHttpContentSerializer.SerializeRequestContentAsync(System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Creates the JSON HttpContent for the request. 
+            </summary>
+            <param name="requestContent">The optional content of the request to be serialized.</param>
+            <param name="cancellationToken">A cancellationToken to cancel this operation.</param>
+            <returns>The HttpContent of the request.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.Serialization.JsonHttpContentSerializer.DeserializeResponseContentAsync``1(System.Net.Http.HttpContent,System.Threading.CancellationToken)">
+            <summary>
+            Parses the JSON content of the HTTP response into the passed type.
+            </summary>
+            <typeparam name="T">The type of the response's content.</typeparam>
+            <param name="content">The HttpContent of the response.</param>
+            <param name="cancellationToken">A cancellationToken to cancel this operation.</param>
+            <returns>The parsed content of the response.</returns>
+        </member>
+        <member name="T:System.Net.WebApiClient.WebApiClient">
+            <summary>
+            Default implementation of a type safe client for all HTTP related communications.
+            </summary>
+        </member>
+        <member name="F:System.Net.WebApiClient.WebApiClient._configuration">
+            <summary>
+            The current WebApiClientConfiguration for this client.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.#ctor">
+            <summary>
+            The default constructor of the WebApiClient.
+            </summary>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.InitializeAsync(System.Net.WebApiClient.WebApiClientConfiguration)">
+            <summary>
+            Initializes the current implementation.
+            </summary>
+            <param name="configuration">The current configuration to use.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.CreateUnderlyingHttpClientAsync">
+            <summary>
+            Creates a new HttpClient instance to be used for the underlying communication.
+            </summary>
+            <returns>The HttpClient instance.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendRequestMessageAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Sends a raw HttpRequestMessage and returns the raw HttpResponseMessage recieved for it. 
+            </summary>
+            <param name="httpRequestMessage">The request message to be sent.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The recieved HttpResponseMessage.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendRequestCoreAsync(System.Net.WebApiClient.Request.HttpRequestBase,System.Threading.CancellationToken)">
+            <summary>
+            Send a HTTP request based on the HttpRequest and returns a parsed HttpResponse recieved for it. 
+            </summary>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendRequestCoreAsync``1(System.Net.WebApiClient.Request.HttpRequestBase,System.Threading.CancellationToken)">
+            <summary>
+            Send a HTTP request based on the HttpRequest and returns a parsed HttpResponse recieved for it. 
+            </summary>
+            <typeparam name="T">The type of the Http response's content.</typeparam>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.HandleErrorsCoreAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+            <summary>
+            Handles any errors recieved for a HTTP request.
+            </summary>
+            <param name="responseMessage">The recieved HttpResponseMessage object.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendRequestAsync``1(System.Net.WebApiClient.Request.HttpRequest,System.Threading.CancellationToken)">
+            <summary>
+            Send a HTTP request based on the HttpRequest and returns a parsed HttpResponse recieved for it. 
+            </summary>
+            <typeparam name="T">The type of the Http response's content.</typeparam>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendRequestAsync(System.Net.WebApiClient.Request.HttpRequest,System.Threading.CancellationToken)">
+            <summary>
+            Send a void HTTP request based on the HttpRequest and returns the non parsed HttpResponse recieved for it. 
+            </summary>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The non-parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendGetRequestAsync``1(System.Net.WebApiClient.Request.HttpGetRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP GET message and returns a parsed HttpResponse recieved for it.
+            </summary>
+            <typeparam name="T">The type of the Http response's content.</typeparam>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendGetRequestAsync(System.Net.WebApiClient.Request.HttpGetRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP GET message and returns the non parsed HttpResponse recieved for it. 
+            </summary>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The non-parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendPostRequestAsync``1(System.Net.WebApiClient.Request.HttpPostRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP POST message and returns a parsed HttpResponse recieved for it.
+            </summary>
+            <typeparam name="T">The type of the HTTP response's content.</typeparam>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendPostRequestAsync(System.Net.WebApiClient.Request.HttpPostRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP POST message and returns the non parsed HttpResponse recieved for it. 
+            </summary>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The non-parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendPutRequestAsync``1(System.Net.WebApiClient.Request.HttpPutRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP PUT message and returns a parsed HttpResponse recieved for it.
+            </summary>
+            <typeparam name="T">The type of the HTTP response's content.</typeparam>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendPutRequestAsync(System.Net.WebApiClient.Request.HttpPutRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP PUT message and returns the non parsed HttpResponse recieved for it. 
+            </summary>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The non-parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendDeleteRequestAsync``1(System.Net.WebApiClient.Request.HttpDeleteRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP DELETE message and returns a parsed HttpResponse recieved for it.
+            </summary>
+            <typeparam name="T">The type of the HTTP response's content.</typeparam>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The parsed HttpResponse.</returns>
+        </member>
+        <member name="M:System.Net.WebApiClient.WebApiClient.SendDeleteRequestAsync(System.Net.WebApiClient.Request.HttpDeleteRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends a HTTP DELETE message and returns the non parsed HttpResponse recieved for it. 
+            </summary>
+            <param name="request">The HTTP request's parameters.</param>
+            <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+            <returns>The non-parsed HttpResponse.</returns>
+        </member>
+        <member name="T:System.Net.WebApiClient.WebApiClientConfiguration">
+            <summary>
+            Handles all the configuration options of the WebApiClient instance.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.WebApiClientConfiguration.Serializer">
+            <summary>
+            The IHttpContentSerializer to be used for all Http requests and responses.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.WebApiClientConfiguration.ErrorHandler">
+            <summary>
+            The IWebApiClientErrorHandler to be used for the error handling of the Http responses.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.WebApiClientConfiguration.RequestFactory">
+            <summary>
+            The IHttpRequestFactory to be used for creating the HttpRequestMessage instance for each request.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.WebApiClientConfiguration.ResponseFactory">
+            <summary>
+            The IHttpResponseFactory to be used for creating the response object from each HttpResponseMessage.
+            </summary>
+        </member>
+        <member name="P:System.Net.WebApiClient.WebApiClientConfiguration.Default">
+            <summary>
+            Creates a default WebApiClientConfiguration.
+            </summary>
+        </member>
+    </members>
+</doc>

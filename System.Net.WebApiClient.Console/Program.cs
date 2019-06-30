@@ -13,9 +13,9 @@ namespace System.Net.WebApiClient.Console
             var client = new WebApiClient();
 
 
-            var post = await client.SendGetRequestAsync<List<Photo>>(new Request.HttpGetRequest
+            var post = await client.SendGetRequestAsync<List<Post>>(new Request.HttpGetRequest
             {
-                RequestUri = new Uri("https://jsonplaceholder.typicode.com/photos"),
+                RequestUri = new Uri("https://jsonplaceholder.typicode.com/posts"),
             });
 
 
