@@ -15,6 +15,10 @@ namespace System.Net.WebApiClient.Request
         /// </summary>
         public object Content { get; set; }
 
+        /// <summary>
+        /// Default constructor of the HttpRequestWithContent. 
+        /// </summary>
+        /// <param name="method">The method of the Http request.</param>
         public HttpRequestWithContent(HttpMethod method) : base(method)
         {
         }

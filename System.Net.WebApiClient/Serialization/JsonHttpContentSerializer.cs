@@ -15,12 +15,27 @@ namespace System.Net.WebApiClient.Serialization
     /// </summary>
     public class JsonHttpContentSerializer : IHttpContentSerializer
     {
+        /// <summary>
+        /// The ContentType header value to be placed in the requests.
+        /// </summary>
         protected const string ContentTypeHeader = "application/json";
+
+        /// <summary>
+        /// The AcceptHeader header value to be placed in the requests.
+        /// </summary>
         protected const string AcceptHeaderValue = "application/json";
+
+        /// <summary>
+        /// The AcceptCharsetHeader header value to be placed in the requests.
+        /// </summary>
         protected const string AcceptCharsetHeaderValue = "utf-8";
 
         JsonSerializer _jsonSerializer;
 
+        /// <summary>
+        /// Default constructor of the JsonHttpContentSerializer.
+        /// </summary>
+        /// <param name="jsonSerializer">The json.Net JsonSerializer to be used for the instance.</param>
         public JsonHttpContentSerializer(JsonSerializer jsonSerializer = null)
         {
             _jsonSerializer = jsonSerializer ?? JsonSerializer.CreateDefault();
@@ -80,7 +95,7 @@ namespace System.Net.WebApiClient.Serialization
         /// Parses the JSON content of the HTTP response into the passed type.
         /// </summary>
         /// <typeparam name="T">The type of the response's content.</typeparam>
-        /// <param name="responseContent">The HttpContent of the response.</param>
+        /// <param name="content">The HttpContent of the response.</param>
         /// <param name="cancellationToken">A cancellationToken to cancel this operation.</param>
         /// <returns>The parsed content of the response.</returns>
         public virtual async Task<T> DeserializeResponseContentAsync<T>(HttpContent content, CancellationToken cancellationToken = default)

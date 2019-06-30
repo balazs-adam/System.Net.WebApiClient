@@ -7,6 +7,9 @@ namespace System.Net.WebApiClient.Request
     /// </summary>
     public class HttpPostRequest : HttpRequestWithContent
     {
+        /// <summary>
+        /// Default constructor of the HttpPostRequest.
+        /// </summary>
         public HttpPostRequest() : base(HttpMethod.Post)
         {
         }

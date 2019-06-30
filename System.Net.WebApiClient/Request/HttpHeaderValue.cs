@@ -9,6 +9,9 @@ namespace System.Net.WebApiClient.Request
     /// </summary>
     public abstract class HttpHeaderValue
     {
+        /// <summary>
+        /// Return the header's value as a string.
+        /// </summary>
         public abstract string StringValue { get; }
     }
 
@@ -31,7 +34,11 @@ namespace System.Net.WebApiClient.Request
             get { return Value.ToString(); }
         }
 
-        public HttpHeaderValue(T value) 
+        /// <summary>
+        /// Default constructor of the HttpHeaderValue class.
+        /// </summary>
+        /// <param name="value">The typed value of the header.</param>
+        public HttpHeaderValue(T value)
         {
             Value = value;
         }

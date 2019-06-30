@@ -11,14 +11,30 @@ using System.Threading.Tasks;
 
 namespace System.Net.WebApiClient.Request
 {
+    /// <summary>
+    /// Default imlemenetation of the IHttpRequestFactory.
+    /// Creates a HttpRequestMessage by the current configuration to be sent.
+    /// </summary>
     public class HttpRequestFactory : IHttpRequestFactory
     {
+        /// <summary>
+        /// The GzipEncoding header value.
+        /// </summary>
         protected const string GzipEncoding = "gzip";
+
+        /// <summary>
+        /// The Deflate header value.
+        /// </summary>
         protected const string DeflateEncoding = "deflate";
 
-        private bool _useGzip;
-        private Uri _baseUri;
+        private readonly bool _useGzip;
+        private readonly Uri _baseUri;
 
+        /// <summary>
+        /// Deafault constructor of the HttpRequestFactory.
+        /// </summary>
+        /// <param name="useGzip">Specifies if the http communication must be gzipped.</param>
+        /// <param name="baseUri">Specifies a base url for all requests.</param>
         public HttpRequestFactory(bool useGzip = true, Uri baseUri = default)
         {
             if (baseUri != default)
@@ -31,6 +47,13 @@ namespace System.Net.WebApiClient.Request
             _baseUri = baseUri;
         }
 
+        /// <summary>
+        /// Creates a new HttpRequestMessage instance for the outgoint request.
+        /// </summary>
+        /// <param name="serializer">The seralizer to be used for the requests content.</param>
+        /// <param name="request">The requests parameteres.</param>
+        /// <param name="cancellationToken">A CancellationToken that can be used to cancel this operation.</param>
+        /// <returns>The HttpRequest instance to be sent.</returns>
         public virtual async Task<HttpRequestMessage> CreateHttpRequestMessageAsync(IHttpContentSerializer serializer, HttpRequestBase request, CancellationToken cancellationToken = default)
         {
             var requestMessage = new HttpRequestMessage(request.Method, await CreateRequestUriAsync(_baseUri, request.RequestUri, request.QueryParameters));
@@ -66,6 +89,13 @@ namespace System.Net.WebApiClient.Request
             return requestMessage;
         }
 
+        /// <summary>
+        /// Creates an aboulute Uri for the outgoing request, including an optional baseUri and a query string.
+        /// </summary>
+        /// <param name="baseUri">The optional baseUri.</param>
+        /// <param name="requestUri">The absolute or relative uri of the request.</param>
+        /// <param name="queryParameters">The optional query parameters.</param>
+        /// <returns>The Uri for the HttpRequestMessage.</returns>
         public virtual Task<Uri> CreateRequestUriAsync(Uri baseUri, Uri requestUri, object queryParameters = null)
         {
             //Ha még nem abszolút és van baseUri akkor kombináljuk a base-t a kérés url-jével. 

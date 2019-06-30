@@ -31,6 +31,10 @@ namespace System.Net.WebApiClient.Request
         /// </summary>
         public HttpMethod Method { get; }
 
+        /// <summary>
+        /// Default constructor of the HttpRequestBase.
+        /// </summary>
+        /// <param name="method">The method of the Http request.</param>
         public HttpRequestBase(HttpMethod method)
         {
             Method = method;

@@ -15,6 +15,10 @@ namespace System.Net.WebApiClient.Response
         /// </summary>
         public HttpStatusCode StatusCode { get; }
 
+        /// <summary>
+        /// Default constructor of the HttpResponse class.
+        /// </summary>
+        /// <param name="statusCode">The status code of the response.</param>
         public HttpResponse(HttpStatusCode statusCode)
         {
             StatusCode = statusCode;
@@ -32,6 +36,11 @@ namespace System.Net.WebApiClient.Response
         /// </summary>
         public T Content { get; }
 
+        /// <summary>
+        /// Default constructor of the HttpResponse class.
+        /// </summary>
+        /// <param name="statusCode">The status code of the response.</param>
+        /// <param name="content">The optional content of the response.</param>
         public HttpResponse(HttpStatusCode statusCode, T content) : base(statusCode)
         {
             Content = content;

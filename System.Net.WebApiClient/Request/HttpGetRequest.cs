@@ -7,6 +7,9 @@ namespace System.Net.WebApiClient.Request
     /// </summary>
     public class HttpGetRequest : HttpRequestBase
     {
+        /// <summary>
+        /// Default constructor of the HttpGetRequest.
+        /// </summary>
         public HttpGetRequest() : base(HttpMethod.Get)
         {
         }
